@@ -1,0 +1,8 @@
+quarkus:
+  banner:
+    path: banner.txt
+
+agregador:
+  schedule:
+    buscarTransacoes:
+      time: 5s
