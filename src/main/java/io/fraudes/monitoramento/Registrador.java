@@ -1,16 +1,21 @@
 package io.fraudes.monitoramento;
 
-import java.util.UUID;
-
 import javax.enterprise.context.ApplicationScoped;
 
 import io.fraudes.domain.Transacao;
+import io.fraudes.repository.TransacaoModelo;
 
 @ApplicationScoped
 public class Registrador {
 
   String salvarTransacao(Transacao transacao) {
-    System.out.println(transacao);
-    return UUID.randomUUID().toString();
+    try {
+      TransacaoModelo modelo = new TransacaoModelo(transacao);
+      modelo.persist();
+      return modelo.id.toString();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "-1";
+    }
   }
 }

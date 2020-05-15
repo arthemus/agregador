@@ -1,6 +1,9 @@
 quarkus:
   banner:
     path: banner.txt
+  mongodb:
+    connection-string: mongodb://localhost:27017
+    database: "monitoramento-bancario"
 
 agregador:
   schedule:

@@ -25,7 +25,7 @@ public class ProcessaTransacoes {
   public void start() {
     for (MonitoraTransacoes monitor : monitoradores) {
       Collection<Transacao> transacoes = monitor.transacoes();
-      transacoes.stream().forEach(this.registrador::salvarTransacao);
+      transacoes.stream().map(this.registrador::salvarTransacao).forEach(System.out::println);
     }
   }
 

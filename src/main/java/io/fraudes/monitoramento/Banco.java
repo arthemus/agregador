@@ -11,7 +11,7 @@ public class Banco implements MonitoraTransacoes {
 
   @Override
   public Collection<Transacao> transacoes() {
-    return Stream.generate(TransacaoFalsa::get).limit(10).collect(Collectors.toList()); 
+    return Stream.generate(TransacaoFalsa::get).limit(1).collect(Collectors.toList());
   }
 
 }
