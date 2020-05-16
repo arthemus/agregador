@@ -1,6 +1,5 @@
 package io.fraudes.repository;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.bson.types.ObjectId;

@@ -20,6 +20,8 @@ public class ProcessaTransacoes {
     this.registrador = registrador;
     this.monitoradores = Collections.synchronizedSet(new HashSet<>());
     this.monitoradores.add(new Banco());
+    this.monitoradores.add(new CartaoCredito());
+    this.monitoradores.add(new Financiamento());
   }
 
   public void start() {

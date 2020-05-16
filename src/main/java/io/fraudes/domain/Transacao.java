@@ -1,11 +1,8 @@
 package io.fraudes.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Transacao implements Serializable {
-
-  private static final long serialVersionUID = 2201170286032164365L;
+public class Transacao {
 
   private String produto;
 

@@ -1,10 +1,6 @@
 package io.fraudes.domain;
 
-import java.io.Serializable;
-
-public class Cliente implements Serializable {
-
-  private static final long serialVersionUID = -1157016218904971677L;
+public class Cliente {
 
   private String nome;
 

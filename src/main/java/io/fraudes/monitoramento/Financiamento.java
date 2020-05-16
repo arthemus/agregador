@@ -7,11 +7,11 @@ import java.util.stream.Stream;
 import io.fraudes.domain.Transacao;
 import io.fraudes.utils.TransacaoFalsa;
 
-public class Banco implements MonitoraTransacoes {
+public class Financiamento implements MonitoraTransacoes {
 
   @Override
   public Collection<Transacao> transacoes() {
-    return Stream.generate(TransacaoFalsa::banco).limit(1).collect(Collectors.toList());
+    return Stream.generate(TransacaoFalsa::financiamento).limit(1).collect(Collectors.toList());
   }
 
 }

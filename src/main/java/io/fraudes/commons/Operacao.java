@@ -1,4 +1,4 @@
-package io.fraudes.domain;
+package io.fraudes.commons;
 
 public enum Operacao {
 
