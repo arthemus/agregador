@@ -1,4 +1,4 @@
-package io.fraudes.scheduler;
+package io.fraudes.commons;
 
 import java.util.List;
 

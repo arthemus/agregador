@@ -1,30 +1,32 @@
-# agregador project
+# Agregador
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Simulando um cenário de vários sistemas e bases de dados legadas, esse projeto tem como intuito agregar as informações de cada base em uma estrutura nova que possibilite a construção de novos sistemas em tecnologias mais modernas.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Cada nova transação de dados também é exposta em tempo real através de mensageria para que novos sistemas possam ser notificados instantaneamente.
 
-## Running the application in dev mode
+O projeto está escrito em `Java 8` utilizando o framework [Quarkus](https://quarkus.io/). A base de dados que simula o novo repositório é uma instancia `MongoDB` e o `Kafka` é utilizado como provedor de mensageria.
 
-You can run your application in dev mode that enables live coding using:
+Para construção do ambiente antes da execução do projeto:
+
+```bash
+docker-compose up
 ```
-./mvnw quarkus:dev
+
+Isso irá criar 4 instancias Docker:
+
+- `MySQL` (Simulando uma base de dados legada)
+- `MongoDB` (A nova base de dados)
+- `Zookeper` (Banco de dados para o Kafka)
+- `Kafka` (Servidor de mensageria)
+
+Execute o projeto com:
+
+```bash
+./mvnw compile quarkus:dev
 ```
 
-## Packaging and running the application
+Uma tabela com as últimas transações processadas pode ser visualizada no endereço [http://localhost:8080](http://localhost:8080).
 
-The application can be packaged using `./mvnw package`.
-It produces the `agregador-1.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+## API
 
-The application is now runnable using `java -jar target/agregador-1.0-SNAPSHOT-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your native executable with: `./target/agregador-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+Através do endereço [http://localhost:8080/api/trasacoes](http://localhost:8080/api/trasacoes) é possível obter uma lista com 1000 transações ordenadas por Data em forma decrescente.

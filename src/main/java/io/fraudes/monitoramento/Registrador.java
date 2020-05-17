@@ -5,6 +5,9 @@ import javax.enterprise.context.ApplicationScoped;
 import io.fraudes.domain.Transacao;
 import io.fraudes.repository.TransacaoModelo;
 
+/**
+ * Verifica e salva os dados já processados na base MongoDB.
+ */
 @ApplicationScoped
 public class Registrador {
 

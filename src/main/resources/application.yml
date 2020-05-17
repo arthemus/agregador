@@ -33,12 +33,12 @@ mp:
       banco:
         connector: smallrye-kafka
         value:
-          deserializer: io.fraudes.scheduler.TransacaoDeserializer
+          deserializer: io.fraudes.commons.TransacaoDeserializer
       cartao:
         connector: smallrye-kafka
         value:
-          deserializer: io.fraudes.scheduler.TransacaoDeserializer
+          deserializer: io.fraudes.commons.TransacaoDeserializer
       financiamento:
         connector: smallrye-kafka
         value:
-          deserializer: io.fraudes.scheduler.TransacaoDeserializer
+          deserializer: io.fraudes.commons.TransacaoDeserializer

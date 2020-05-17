@@ -1,4 +1,4 @@
-package io.fraudes.resources;
+package io.fraudes.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,13 +14,13 @@ import org.jboss.resteasy.annotations.SseElementType;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.reactivestreams.Publisher;
 
+import io.fraudes.commons.GrupoTransacao;
+import io.fraudes.controller.response.TransacaoResponse;
 import io.fraudes.repository.TransacaoModelo;
-import io.fraudes.resources.response.TransacaoResponse;
-import io.fraudes.scheduler.GrupoTransacao;
 import io.quarkus.panache.common.Sort;
 
 @Path("/api")
-public class TransacoesResource {
+public class TransacoesController {
 
     @Inject
     @Channel("banco")

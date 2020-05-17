@@ -8,6 +8,9 @@ import io.fraudes.domain.Cliente;
 import io.fraudes.domain.Transacao;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
+/**
+ * Modelo de persistência para os novos dados processados.
+ */
 public class TransacaoModelo extends PanacheMongoEntity {
 
   public ObjectId id;

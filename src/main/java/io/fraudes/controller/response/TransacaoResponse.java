@@ -1,9 +1,9 @@
-package io.fraudes.resources.response;
+package io.fraudes.controller.response;
+
+import java.util.Date;
 
 import io.fraudes.domain.Cliente;
 import io.fraudes.repository.TransacaoModelo;
-
-import java.util.Date;
 
 public class TransacaoResponse {
 

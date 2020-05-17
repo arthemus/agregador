@@ -21,7 +21,7 @@ public class CartaoCredito implements MonitoraTransacoes {
 
   @Override
   public List<Transacao> buscar(Date data) {
-    synchronized(entityManager) {
+    synchronized (entityManager) {
       TypedQuery<Transacao> query = this.entityManager.createQuery(
           "SELECT t FROM Transacao t WHERE (1=1) AND (t.produto = :produto) AND (t.data = :data)", Transacao.class);
       query.setParameter("produto", Produto.CARTAO_CREDITO.name());

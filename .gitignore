@@ -1,35 +1,36 @@
-# Eclipse
+.DS_Store
+target
+*.iml
+.idea
+.settings
 .project
 .classpath
-.settings/
-bin/
-
-# IntelliJ
-.idea
-*.ipr
-*.iml
-*.iws
-
-# NetBeans
-nb-configuration.xml
-
-# Visual Studio Code
-.vscode
-
-# OSX
-.DS_Store
-
-# Vim
-*.swp
-*.swo
-
-# patch
+.vscode/
+*~
+local-test
+out
+lib
+bin
+dependency-reduced-pom.xml
+derby.log
+hotspot.log
+.directory
+.java-version
+.graal-install
+hs_err_pid*.log
+dumps
 *.orig
 *.rej
-
-# Maven
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-release.properties
+.factorypath
+graph-output.dot
+*.swp
+*.swo
+ObjectStore
+.gradle
+build
+docker/distroless/bazel-*
+/.apt_generated_tests/
+quarkus.log
+replay_*.logß
+nbactions.xml
+nb-configuration.xml

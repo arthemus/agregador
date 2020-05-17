@@ -1,4 +1,4 @@
-package io.fraudes.scheduler;
+package io.fraudes;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -18,8 +18,16 @@ import io.fraudes.commons.Operacao;
 import io.fraudes.commons.Produto;
 import io.fraudes.domain.Cliente;
 import io.fraudes.domain.Transacao;
+import io.fraudes.scheduler.AgregaTransacoes;
 import io.quarkus.scheduler.Scheduled;
 
+/**
+ * Essa classe simula a criação de 10 transações dos tipo BANCO, CARTOES e
+ * FINANCIAMENTO de forma randômica por 1 minuto. A data de cada transação pode
+ * estar entre o dia corrente e 15 dias a frente. As transações são salvas na
+ * instancia do banco MySQL e posteriormente lidas e processadas pela classe
+ * {@link AgregaTransacoes}.
+ */
 @ApplicationScoped
 public class Simulador {
 

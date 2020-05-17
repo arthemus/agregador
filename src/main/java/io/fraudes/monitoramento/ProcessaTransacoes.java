@@ -17,6 +17,9 @@ public class ProcessaTransacoes {
     this.registrador = registrador;
   }
 
+  /**
+   * Retorna apenas novas transações processadas.
+   */
   public List<String> processar(MonitoraTransacoes monitor) {
     List<Transacao> transacoes = monitor.buscar(new Date());
     return transacoes.stream()
