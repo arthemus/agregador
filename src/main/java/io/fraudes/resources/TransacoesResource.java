@@ -1,8 +1,7 @@
 package io.fraudes.resources;
 
-import io.fraudes.repository.TransacaoModelo;
-import io.fraudes.resources.response.TransacaoResponse;
-import io.quarkus.panache.common.Sort;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -15,29 +14,31 @@ import org.jboss.resteasy.annotations.SseElementType;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.reactivestreams.Publisher;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import io.fraudes.repository.TransacaoModelo;
+import io.fraudes.resources.response.TransacaoResponse;
+import io.fraudes.scheduler.GrupoTransacao;
+import io.quarkus.panache.common.Sort;
 
 @Path("/api")
 public class TransacoesResource {
 
     @Inject
     @Channel("banco")
-    Publisher<String> ultimaTransacaoBanco;
+    Publisher<GrupoTransacao> ultimaTransacaoBanco;
 
     @Inject
     @Channel("cartao")
-    Publisher<String> ultimaTransacaoCartao;
+    Publisher<GrupoTransacao> ultimaTransacaoCartao;
 
     @Inject
     @Channel("financiamento")
-    Publisher<String> ultimaTransacaoFinanciamento;
+    Publisher<GrupoTransacao> ultimaTransacaoFinanciamento;
 
     @GET
     @Path("/stream/{canal}")
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    @SseElementType("text/plain")
-    public Publisher<String> onStream(@PathParam String canal) {
+    @SseElementType(MediaType.APPLICATION_JSON)
+    public Publisher<GrupoTransacao> onStream(@PathParam String canal) {
         switch (canal) {
             case "banco":
                 return ultimaTransacaoBanco;

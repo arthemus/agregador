@@ -10,13 +10,16 @@ public class Registrador {
 
   String salvarTransacao(Transacao transacao) {
     try {
-      TransacaoModelo modelo = new TransacaoModelo(transacao);
-      modelo.persist();
-      return modelo.id.toString();
+      TransacaoModelo existente = TransacaoModelo.find("idInterno", transacao.getId()).firstResult();
+      if (existente == null) {
+        TransacaoModelo modelo = new TransacaoModelo(transacao);
+        modelo.persist();
+        return modelo.id.toString();
+      }
     } catch (Exception e) {
       e.printStackTrace();
-      return "-1";
     }
+    return "-1";
   }
 
 }

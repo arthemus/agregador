@@ -13,17 +13,17 @@
   <div class="container">
 
     <h2>Últimas Transações</h2>
-    <hr />
 
-    <div class="row">
-      <p class="col-md-12">Canal "Banco": <strong><span id="banco">N/A</span>&nbsp;</strong></p>
-    </div>
-    <div class="row">
-      <p class="col-md-12">Canal "Cartões": <strong><span id="cartao">N/A</span>&nbsp;</strong></p>
-    </div>
-    <div class="row">
-      <p class="col-md-12">Canal "Financiamento": <strong><span id="financiamento">N/A</span>&nbsp;</strong></p>
-    </div>
+    <table id="transacoes" class="table table-striped table-bordered table-sm">
+      <thead class="thead-dark">
+        <th>Produto</th>
+        <th>Transação ID</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -37,17 +37,38 @@
     crossorigin="anonymous"></script>
 
   <script>
+    function renderTable(produto, transacoes) {
+      transacoes.forEach((v, i) => {
+        var tdProduto = document.createElement('td');
+        tdProduto.appendChild(document.createTextNode(produto));
+
+        var tdId = document.createElement('td');
+        tdId.appendChild(document.createTextNode(v));
+
+        var tr = document.createElement('tr');
+        tr.appendChild(tdProduto);
+        tr.appendChild(tdId);
+
+        document.getElementById('transacoes').appendChild(tr);
+      });
+    }
+
     const _banco = new EventSource("/api/stream/banco");
     _banco.onmessage = function (event) {
-      document.getElementById("banco").innerHTML = event.data;
+      const obj = JSON.parse(event.data);
+      renderTable("Banco", obj.transacoesId);
     };
+
     const _cartao = new EventSource("/api/stream/cartao");
     _cartao.onmessage = function (event) {
-      document.getElementById("cartao").innerHTML = event.data;
+      const obj = JSON.parse(event.data);
+      renderTable("Cartões", obj.transacoesId);
     };
+
     const _financiamento = new EventSource("/api/stream/financiamento");
     _financiamento.onmessage = function (event) {
-      document.getElementById("financiamento").innerHTML = event.data;
+      const obj = JSON.parse(event.data);
+      renderTable("Financiamento", obj.transacoesId);
     };
   </script>
 </body>

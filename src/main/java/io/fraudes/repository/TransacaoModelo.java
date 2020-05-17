@@ -12,6 +12,8 @@ public class TransacaoModelo extends PanacheMongoEntity {
 
   public ObjectId id;
 
+  public Long idInterno;
+
   public String produto;
 
   public String canal;
@@ -27,6 +29,7 @@ public class TransacaoModelo extends PanacheMongoEntity {
   }
 
   public TransacaoModelo(Transacao transacao) {
+    this.idInterno = transacao.getId();
     this.produto = transacao.getProduto();
     this.canal = transacao.getCanal();
     this.data = transacao.getData();

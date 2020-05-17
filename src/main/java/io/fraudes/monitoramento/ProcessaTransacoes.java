@@ -1,5 +1,9 @@
 package io.fraudes.monitoramento;
 
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.enterprise.context.ApplicationScoped;
 
 import io.fraudes.domain.Transacao;
@@ -9,29 +13,16 @@ public class ProcessaTransacoes {
 
   private final Registrador registrador;
 
-  private final MonitoraTransacoes banco = new Banco();
-
-  private final MonitoraTransacoes cartao = new CartaoCredito();
-
-  private final MonitoraTransacoes financiamento = new Financiamento();
-
   public ProcessaTransacoes(Registrador registrador) {
     this.registrador = registrador;
   }
 
-  public String banco() {
-    Transacao transacao = this.banco.buscar();
-    return this.registrador.salvarTransacao(transacao);
-  }
-
-  public String cartao() {
-    Transacao transacao = this.cartao.buscar();
-    return this.registrador.salvarTransacao(transacao);
-  }
-
-  public String financiamento() {
-    Transacao transacao = this.financiamento.buscar();
-    return this.registrador.salvarTransacao(transacao);
+  public List<String> processar(MonitoraTransacoes monitor) {
+    List<Transacao> transacoes = monitor.buscar(new Date());
+    return transacoes.stream()
+        .map(this.registrador::salvarTransacao)
+        .filter(o -> !o.equals("-1"))
+        .collect(Collectors.toList());
   }
 
 }

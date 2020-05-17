@@ -4,6 +4,12 @@ quarkus:
   mongodb:
     connection-string: mongodb://localhost:27017
     database: monitoramento-bancario
+  datasource:
+    db-kind: mysql
+    username: root
+    password: root
+    jdbc:
+      url: jdbc:mysql://localhost:3306/transacoes-falsas
 
 mp:
   messaging:
@@ -12,32 +18,27 @@ mp:
         connector: smallrye-kafka
         topic: banco
         value:
-          serializer: org.apache.kafka.common.serialization.StringSerializer
+          serializer: io.quarkus.kafka.client.serialization.JsonbSerializer
       transacao-cartao:
         connector: smallrye-kafka
         topic: cartao
         value:
-          serializer: org.apache.kafka.common.serialization.StringSerializer
+          serializer: io.quarkus.kafka.client.serialization.JsonbSerializer
       transacao-financiamento:
         connector: smallrye-kafka
         topic: financiamento
         value:
-          serializer: org.apache.kafka.common.serialization.StringSerializer
+          serializer: io.quarkus.kafka.client.serialization.JsonbSerializer
     incoming:
       banco:
         connector: smallrye-kafka
         value:
-          deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          deserializer: io.fraudes.scheduler.TransacaoDeserializer
       cartao:
         connector: smallrye-kafka
         value:
-          deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          deserializer: io.fraudes.scheduler.TransacaoDeserializer
       financiamento:
         connector: smallrye-kafka
         value:
-          deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
-agregador:
-  schedule:
-    buscarTransacoes:
-      time: 5s
+          deserializer: io.fraudes.scheduler.TransacaoDeserializer
