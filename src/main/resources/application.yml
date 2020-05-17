@@ -3,7 +3,39 @@ quarkus:
     path: banner.txt
   mongodb:
     connection-string: mongodb://localhost:27017
-    database: "monitoramento-bancario"
+    database: monitoramento-bancario
+
+mp:
+  messaging:
+    outgoing:
+      transacao-banco:
+        connector: smallrye-kafka
+        topic: banco
+        value:
+          serializer: org.apache.kafka.common.serialization.StringSerializer
+      transacao-cartao:
+        connector: smallrye-kafka
+        topic: cartao
+        value:
+          serializer: org.apache.kafka.common.serialization.StringSerializer
+      transacao-financiamento:
+        connector: smallrye-kafka
+        topic: financiamento
+        value:
+          serializer: org.apache.kafka.common.serialization.StringSerializer
+    incoming:
+      banco:
+        connector: smallrye-kafka
+        value:
+          deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      cartao:
+        connector: smallrye-kafka
+        value:
+          deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      financiamento:
+        connector: smallrye-kafka
+        value:
+          deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 agregador:
   schedule:

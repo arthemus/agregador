@@ -1,10 +1,5 @@
 package io.fraudes.monitoramento;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.enterprise.context.ApplicationScoped;
 
 import io.fraudes.domain.Transacao;
@@ -12,23 +7,31 @@ import io.fraudes.domain.Transacao;
 @ApplicationScoped
 public class ProcessaTransacoes {
 
-  private final Set<MonitoraTransacoes> monitoradores;
-
   private final Registrador registrador;
+
+  private final MonitoraTransacoes banco = new Banco();
+
+  private final MonitoraTransacoes cartao = new CartaoCredito();
+
+  private final MonitoraTransacoes financiamento = new Financiamento();
 
   public ProcessaTransacoes(Registrador registrador) {
     this.registrador = registrador;
-    this.monitoradores = Collections.synchronizedSet(new HashSet<>());
-    this.monitoradores.add(new Banco());
-    this.monitoradores.add(new CartaoCredito());
-    this.monitoradores.add(new Financiamento());
   }
 
-  public void start() {
-    for (MonitoraTransacoes monitor : monitoradores) {
-      Collection<Transacao> transacoes = monitor.transacoes();
-      transacoes.stream().map(this.registrador::salvarTransacao).forEach(System.out::println);
-    }
+  public String banco() {
+    Transacao transacao = this.banco.buscar();
+    return this.registrador.salvarTransacao(transacao);
+  }
+
+  public String cartao() {
+    Transacao transacao = this.cartao.buscar();
+    return this.registrador.salvarTransacao(transacao);
+  }
+
+  public String financiamento() {
+    Transacao transacao = this.financiamento.buscar();
+    return this.registrador.salvarTransacao(transacao);
   }
 
 }
