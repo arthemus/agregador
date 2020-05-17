@@ -23,10 +23,10 @@ import io.quarkus.scheduler.Scheduled;
 
 /**
  * Essa classe simula a criação de 10 transações dos tipo BANCO, CARTOES e
- * FINANCIAMENTO de forma randômica por 1 minuto. A data de cada transação pode
- * estar entre o dia corrente e 15 dias a frente. As transações são salvas na
- * instancia do banco MySQL e posteriormente lidas e processadas pela classe
- * {@link AgregaTransacoes}.
+ * FINANCIAMENTO de forma randômica de 10 em 10 segundos. A data de cada
+ * transação pode estar entre o dia corrente e 15 dias a frente. As transações
+ * são salvas na instancia do banco MySQL e posteriormente lidas e processadas
+ * pela classe {@link AgregaTransacoes}.
  */
 @ApplicationScoped
 public class Simulador {
@@ -46,7 +46,7 @@ public class Simulador {
   @Inject
   EntityManager entityManager;
 
-  @Scheduled(every = "1m")
+  @Scheduled(every = "10s")
   void gerarTransacoesTeste() {
     Cliente cliente = this.buscarNovoCliente();
     this.criarTransacoesBanco(cliente);

@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 public class Transacao {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String produto;
