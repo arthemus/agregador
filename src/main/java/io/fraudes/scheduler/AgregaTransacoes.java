@@ -1,18 +1,16 @@
 package io.fraudes.scheduler;
 
-import java.util.concurrent.TimeUnit;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
-import org.eclipse.microprofile.reactive.messaging.Outgoing;
-
 import io.fraudes.commons.GrupoTransacao;
 import io.fraudes.monitoramento.Banco;
 import io.fraudes.monitoramento.CartaoCredito;
 import io.fraudes.monitoramento.Financiamento;
 import io.fraudes.monitoramento.ProcessaTransacoes;
 import io.reactivex.Flowable;
+import org.eclipse.microprofile.reactive.messaging.Outgoing;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Essa classe é responsável por ler e processar as informações legadas a cada 1
@@ -37,19 +35,19 @@ public class AgregaTransacoes {
   @Outgoing("transacao-banco")
   Flowable<GrupoTransacao> processarBanco() {
     return Flowable.interval(1, TimeUnit.MINUTES)
-        .map(o -> new GrupoTransacao(this.processaTransacoes.processar(banco)));
+            .map(o -> new GrupoTransacao(this.processaTransacoes.processar(banco)));
   }
 
   @Outgoing("transacao-cartao")
   Flowable<GrupoTransacao> processarCartao() {
     return Flowable.interval(1, TimeUnit.MINUTES)
-        .map(o -> new GrupoTransacao(this.processaTransacoes.processar(cartaoCredito)));
+            .map(o -> new GrupoTransacao(this.processaTransacoes.processar(cartaoCredito)));
   }
 
   @Outgoing("transacao-financiamento")
   Flowable<GrupoTransacao> processarFinanciamento() {
     return Flowable.interval(1, TimeUnit.MINUTES)
-        .map(o -> new GrupoTransacao(this.processaTransacoes.processar(financiamento)));
+            .map(o -> new GrupoTransacao(this.processaTransacoes.processar(financiamento)));
   }
 
 }

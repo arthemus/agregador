@@ -1,31 +1,31 @@
 package io.fraudes.controller.response;
 
-import java.util.Date;
-
 import io.fraudes.domain.Cliente;
 import io.fraudes.repository.TransacaoModelo;
 
+import java.util.Date;
+
 public class TransacaoResponse {
 
-    public String id;
+  public final String id;
 
-    public String produto;
+  public final String produto;
 
-    public String canal;
+  public final String canal;
 
-    public Date data;
+  public final Date data;
 
-    public Cliente cliente;
+  public final Cliente cliente;
 
-    public String operacao;
+  public final String operacao;
 
-    public TransacaoResponse(TransacaoModelo modelo) {
-        this.id = modelo.id.toString();
-        this.produto = modelo.produto;
-        this.canal = modelo.canal;
-        this.data = modelo.data;
-        this.cliente = modelo.cliente;
-        this.operacao = modelo.operacao;
-    }
+  public TransacaoResponse(TransacaoModelo modelo) {
+    this.id = modelo.id.toString();
+    this.produto = modelo.produto;
+    this.canal = modelo.canal;
+    this.data = modelo.data;
+    this.cliente = modelo.cliente;
+    this.operacao = modelo.operacao;
+  }
 
 }

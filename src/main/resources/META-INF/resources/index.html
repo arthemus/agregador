@@ -2,11 +2,11 @@
 <html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Agregado - 1.0</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  <meta charset="UTF-8">
+  <title>Agregado - 1.0</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
+  <style>
         h1,
         h2,
         h3,
@@ -102,33 +102,34 @@
             list-style-type: none;
             padding-left: 0;
         }
-    </style>
+
+  </style>
 </head>
 
 <body>
-    <center class="banner lead">
-        Últimas Transações
-    </center>
-    <div>
-        <table id="transacoes" class="table table-striped table-bordered table-sm">
-            <thead class="thead-dark">
-                <th>Produto</th>
-                <th>Transação ID</th>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+<center class="banner lead">
+  Últimas Transações
+</center>
+<div>
+  <table id="transacoes" class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <th>Produto</th>
+    <th>Transação ID</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script>
+<script>
         function renderTable(produto, transacoes) {
             transacoes.forEach((v, i) => {
                 var tdProduto = document.createElement('td');
@@ -162,7 +163,8 @@
             const obj = JSON.parse(event.data);
             renderTable("Financiamento", obj.transacoesId);
         };
-    </script>
+
+</script>
 </body>
 
 </html>

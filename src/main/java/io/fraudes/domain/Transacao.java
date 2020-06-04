@@ -1,14 +1,7 @@
 package io.fraudes.domain;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Transacao {
@@ -80,7 +73,7 @@ public class Transacao {
   @Override
   public String toString() {
     return "Transacao [canal=" + canal + ", cliente=" + cliente + ", data=" + data + ", operacao=" + operacao
-        + ", produto=" + produto + "]";
+            + ", produto=" + produto + "]";
   }
 
   @Override
@@ -101,11 +94,8 @@ public class Transacao {
       return false;
     Transacao other = (Transacao) obj;
     if (id == null) {
-      if (other.id != null)
-        return false;
-    } else if (!id.equals(other.id))
-      return false;
-    return true;
+      return other.id == null;
+    } else return id.equals(other.id);
   }
 
 }

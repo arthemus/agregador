@@ -1,12 +1,11 @@
 package io.fraudes.repository;
 
-import java.util.Date;
-
-import org.bson.types.ObjectId;
-
 import io.fraudes.domain.Cliente;
 import io.fraudes.domain.Transacao;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import org.bson.types.ObjectId;
+
+import java.util.Date;
 
 /**
  * Modelo de persistência para os novos dados processados.

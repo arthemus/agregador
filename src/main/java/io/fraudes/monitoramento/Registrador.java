@@ -1,9 +1,9 @@
 package io.fraudes.monitoramento;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import io.fraudes.domain.Transacao;
 import io.fraudes.repository.TransacaoModelo;
+
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  * Verifica e salva os dados já processados na base MongoDB.
